@@ -1,0 +1,10 @@
+{
+  id: bio.id,
+  first_name: bio.first_name,
+  last_name: bio.last_name,
+  title: bio.title,
+  bio: bio.bio,
+  created_at: bio.created_at,
+  updated_at: bio.updated_at
+
+}

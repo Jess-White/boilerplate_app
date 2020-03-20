@@ -1,0 +1,7 @@
+{
+  id: boilerplate.id,
+  name: boilerplate.name,
+  boilerplate_text: boilerplate.boilerplate_text,
+  created_at: boilerplate.created_at,
+  updated_at: boilerplate.updated_at
+}

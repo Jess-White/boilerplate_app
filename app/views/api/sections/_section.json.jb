@@ -1,0 +1,8 @@
+{
+  id: section.id,
+  category: section.category,
+  order: section.order,
+  content: section.content,
+  created_at: section.created_at,
+  updated_at: section.updated_at
+}

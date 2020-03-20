@@ -1,0 +1,14 @@
+{
+  id: grant.id,
+  name: grant.name,
+  purpose: grant.purpose,
+  funding_org: grant.funding_org,
+  funding_org_website: grant.funding_org_website,
+  funding_org_rfp_webpage: grant.funding_org_rfp_webpage,
+  deadline: grant.deadline,
+  date_submitted: grant.date_submitted,
+  created_at: grant.created_at,
+  updated_at: grant.updated_at,
+  sections: grant.sections.order(:order).map {|section| render partial: "api/sections/section.json.jb", locals: {section: section}}
+
+}
