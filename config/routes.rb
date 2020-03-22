@@ -10,7 +10,6 @@ Rails.application.routes.draw do
     patch '/bios/:id' => 'bios#update'
     delete '/bios/:id' => 'bios#destroy'
 
-
     get '/boilerplates' => 'boilerplates#index'
     post '/boilerplates' => 'boilerplates#create'
     get '/boilerplates/:id' => 'boilerplates#show'
@@ -28,6 +27,8 @@ Rails.application.routes.draw do
     get '/grants/:id' => 'grants#show'
     patch '/grants/:id' => 'grants#update'
     delete '/grants/:id' => 'grants#destroy'
+    
+    post '/grants/:id/copy' => 'grants#copy'
 
     get '/organizations' => 'organizations#index'
     post '/organizations' => 'organizations#create'
