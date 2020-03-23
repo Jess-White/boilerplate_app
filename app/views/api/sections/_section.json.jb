@@ -1,6 +1,7 @@
 {
   id: section.id,
   category: section.category,
+  display_category: section.display_category,
   order: section.order,
   content: section.content,
   created_at: section.created_at,

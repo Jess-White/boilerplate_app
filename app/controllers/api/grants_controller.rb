@@ -21,7 +21,7 @@ class Api::GrantsController < ApplicationController
                         organization_id: params[:organization_id].to_i
                       )
     if @grant.save
-      (0..8).each_with_index do |cat_num, index|
+      [1, 2, 3, 4, 5, 6, 7, 8, 9].each_with_index do |cat_num, index|
         Section.create(category: cat_num,
                         order: index + 1,
                         grant_id: @grant.id 
@@ -35,7 +35,6 @@ class Api::GrantsController < ApplicationController
 
   def copy
     grant = Grant.find(params[:id])
-    puts "A"
     copy_grant = Grant.new(
                         name: grant.name,
                         purpose: grant.purpose,
@@ -47,12 +46,12 @@ class Api::GrantsController < ApplicationController
                         organization_id: grant.organization_id
                       )
     if copy_grant.save
-      sections = grant.sections.order(category: :asc).all
-      puts sections
-      (0..8).each_with_index do |cat_num, index|
-        Section.create(category: cat_num,
-                        order: index + 1,
-                        content: sections[index].content,
+      sections = grant.sections.order(category: :asc)
+      
+      sections.each do |section|
+        Section.create(category: section.category,
+                        order: section.order,
+                        content: section.content,
                         grant_id: copy_grant.id 
                         )
       end 
@@ -60,7 +59,6 @@ class Api::GrantsController < ApplicationController
       # redirect_to action: "show", id: copy_grant.id
       render "show.json.jb"
     else
-      puts "B"
       render json: {errors: copy_grant.errors.full_messages}, status: :unprocessable_entity
     end
   end
