@@ -28,7 +28,7 @@ Rails.application.routes.draw do
     patch '/grants/:id' => 'grants#update'
     delete '/grants/:id' => 'grants#destroy'
     
-    post '/grants/:id/copy' => 'grants#copy'
+    get '/grants/:id/copy' => 'grants#copy'
 
     get '/organizations' => 'organizations#index'
     post '/organizations' => 'organizations#create'

@@ -18,10 +18,10 @@ class Api::GrantsController < ApplicationController
                         funding_org_rfp_webpage: params[:funding_org_rfp_webpage],
                         deadline: params[:deadline],
                         date_submitted: params[:date_submitted],
-                        organization_id: params[:organization_id]
+                        organization_id: params[:organization_id].to_i
                       )
     if @grant.save
-      [1,2,3,4,5,6,7,8,9].each_with_index do |cat_num, index|
+      (0..8).each_with_index do |cat_num, index|
         Section.create(category: cat_num,
                         order: index + 1,
                         grant_id: @grant.id 
@@ -30,6 +30,38 @@ class Api::GrantsController < ApplicationController
       render "show.json.jb"
     else
       render json: {errors: @grant.errors.full_messages}, status: :unprocessable_entity
+    end
+  end
+
+  def copy
+    grant = Grant.find(params[:id])
+    puts "A"
+    copy_grant = Grant.new(
+                        name: grant.name,
+                        purpose: grant.purpose,
+                        funding_org: grant.funding_org,
+                        funding_org_website: grant.funding_org_website,
+                        funding_org_rfp_webpage: grant.funding_org_rfp_webpage,
+                        deadline: grant.deadline,
+                        date_submitted: grant.date_submitted,
+                        organization_id: grant.organization_id
+                      )
+    if copy_grant.save
+      sections = grant.sections.order(category: :asc).all
+      puts sections
+      (0..8).each_with_index do |cat_num, index|
+        Section.create(category: cat_num,
+                        order: index + 1,
+                        content: sections[index].content,
+                        grant_id: copy_grant.id 
+                        )
+      end 
+      @grant = copy_grant
+      # redirect_to action: "show", id: copy_grant.id
+      render "show.json.jb"
+    else
+      puts "B"
+      render json: {errors: copy_grant.errors.full_messages}, status: :unprocessable_entity
     end
   end
 
