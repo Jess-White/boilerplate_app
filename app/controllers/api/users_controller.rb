@@ -1,5 +1,7 @@
 class Api::UsersController < ApplicationController
 
+  before_action :authenticate_user
+  
   def index
     @users = User.all
 
@@ -20,7 +22,6 @@ class Api::UsersController < ApplicationController
                         password_confirmation: params[:password_confirmation]
                       )
     if @user.save
-      # render "show.json.jb"
       render json: { message: "User created successfully" }, status: :created
     else
       render json: {errors: @user.errors.messages}, status: :unprocessable_entity

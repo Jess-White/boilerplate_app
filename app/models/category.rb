@@ -1,3 +1,3 @@
 class Category < ApplicationRecord
-  has_many: boilerplates
+  has_many :boilerplates
 end
