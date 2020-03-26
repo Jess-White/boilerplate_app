@@ -2,6 +2,8 @@
   id: boilerplate.id,
   name: boilerplate.name,
   boilerplate_text: boilerplate.boilerplate_text,
+  user: (render partial: "api/users/user.json.jb", locals: {user: boilerplate.user}),
+  category: (render partial: "api/categories/category.json.jb", locals: {category: boilerplate.category}),
   created_at: boilerplate.created_at,
   updated_at: boilerplate.updated_at
 }
