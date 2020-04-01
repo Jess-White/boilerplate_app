@@ -36,6 +36,6 @@ class Api::OrganizationsController < ApplicationController
   def destroy
     organization = Organization.find(params[:id])
     organization.destroy
-    render json: {message: "Organization successfully destroyed"}
+    render json: {message: "Organization successfully destroyed."}
   end
 end

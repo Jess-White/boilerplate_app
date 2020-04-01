@@ -1,6 +1,4 @@
 class Api::UsersController < ApplicationController
-
-  before_action :authenticate_user
   
   def index
     @users = User.all
@@ -24,7 +22,7 @@ class Api::UsersController < ApplicationController
     if @user.save
       render json: { message: "User created successfully" }, status: :created
     else
-      render json: {errors: @user.errors.messages}, status: :unprocessable_entity
+      render json: {errors: @user.errors.full_messages}, status: :bad_request
     end
   end
 
