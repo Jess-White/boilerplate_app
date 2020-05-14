@@ -16,7 +16,7 @@ class Api::BoilerplatesController < ApplicationController
                          name: params[:name],
                          boilerplate_text: params[:boilerplate_text],
                          user_id: current_user.id,
-                         category_id: params[:category_id],
+                         category_id: params[:category_id]
                         )
     if @boilerplate.save
       render "show.json.jb"
