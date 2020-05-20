@@ -35,7 +35,7 @@ class Api::BoilerplatesController < ApplicationController
 
     @boilerplate.name = params[:name] || @boilerplate.name
     @boilerplate.boilerplate_text = params[:boilerplate_text] || @boilerplate.boilerplate_text
-    @boilerplate.user_id = params[:user_id] || @boilerplate.current_user.id
+    @boilerplate.user_id = params[:user_id] || current_user.id
     @boilerplate.category_id = params[:category_id] || @boilerplate.category_id
 
     @boilerplate.save
