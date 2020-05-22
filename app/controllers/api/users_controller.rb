@@ -15,7 +15,6 @@ class Api::UsersController < ApplicationController
                         email: params[:email],
                         title: params[:title],
                         organization_id: params[:organization_id],
-                        title: params[:title],
                         password: params[:password],
                         password_confirmation: params[:password_confirmation]
                       )
